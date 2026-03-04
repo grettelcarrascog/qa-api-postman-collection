@@ -14,4 +14,4 @@ Colección de Postman para pruebas de API en un flujo bancario de transferencias
 3. Ejecutar los requests (los responses se basan en Examples)
 
 ## Archivo
-- `postman/Digital_Banking_Transfers.postman_collection.json`
+- `apitesting/Digital_Banking_Transfers.postman_collection.json`
