@@ -15,3 +15,6 @@ Colección de Postman para pruebas de API en un flujo bancario de transferencias
 
 ## Archivo
 - `apitesting/Digital_Banking_Transfers.postman_collection.json`
+
+## Mock server
+Los responses de la colección se generan utilizando Postman Mock Server para simular distintos estados de transferencias y validar reglas de negocio, códigos de error y consistencia de estados sin depender de un backend real.
