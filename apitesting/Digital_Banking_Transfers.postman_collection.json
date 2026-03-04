@@ -1,0 +1,1608 @@
+{
+  "info": {
+    "_postman_id": "d8d966d7-26cd-4851-bb09-d2313e3c8db1",
+    "name": "Digital Banking Transfers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52891362",
+    "_collection_link": "https://go.postman.co/collection/52891362-d8d966d7-26cd-4851-bb09-d2313e3c8db1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Pre-validaciones",
+      "item": [
+        {
+          "name": "Account status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ACTIVE",
+                "type": "text"
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "BLOCKED",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "ACTIVE",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"ACC-001\",\n  \"status\": \"ACTIVE\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/{{accountId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "{{accountId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 400
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 04:25:53 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-length",
+                  "value": "155"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "-"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"accountId\": \"ACC-001\",\n  \"status\": \"ACTIVE\",\n  \"currency\": \"USD\"\n}"
+            },
+            {
+              "name": "BLOCKED",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"errorCode\": \"ACCOUNT_BLOCKED\",\n  \"message\": \"Account is not operable\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/{{accountId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "{{accountId}}"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 400
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 04:30:33 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-length",
+                  "value": "155"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "-"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errorCode\": \"ACCOUNT_BLOCKED\",\n  \"message\": \"Account is not operable\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Alias validation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "VALID",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "INVALID_ALIAS",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/aliases/{{alias}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "aliases",
+                "{{alias}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "VALID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/aliases/{{alias}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "aliases",
+                    "{{alias}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 04:57:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=159f09ecc1edcd06"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=394de6ff2d9fbdf2"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772600310"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "135"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=2KdL37BnBLi9ZfKeBBdyuMb8uRbd3B9olejDE7YQrWo-1772600250-1.0.1.1-SwM9CuasS4iF9kqP22TyaJFg3OjbOTwNR0IEEP7B8EkjtooHgHmGLrbykCeudhwgm4t0W_oFCHHI4KWXfLOPIRBSnOWJogPVk_ZbBFXXmJ4; path=/; expires=Wed, 04-Mar-26 05:27:30 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e4ceb3b1e2376-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"alias\": \"juan.perez\",\n  \"resolvedAccountId\": \"ACC-777\",\n  \"status\": \"VALID\"\n}"
+            },
+            {
+              "name": "INVALID_ALIAS",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/aliases/{{alias}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "aliases",
+                    "{{alias}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 04:57:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=159f09ecc1edcd06"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=394de6ff2d9fbdf2"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772600310"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "135"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=2KdL37BnBLi9ZfKeBBdyuMb8uRbd3B9olejDE7YQrWo-1772600250-1.0.1.1-SwM9CuasS4iF9kqP22TyaJFg3OjbOTwNR0IEEP7B8EkjtooHgHmGLrbykCeudhwgm4t0W_oFCHHI4KWXfLOPIRBSnOWJogPVk_ZbBFXXmJ4; path=/; expires=Wed, 04-Mar-26 05:27:30 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e4ceb3b1e2376-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errorCode\": \"INVALID_ALIAS\",\n  \"message\": \"Alias not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Balance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "BALANCE_OK",
+                "type": "text"
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "INSUFFICIENT_FUNDS",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}/balance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}",
+                "balance"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "BALANCE_OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/{{accountId}}/balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "{{accountId}}",
+                    "balance"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:03:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=8f5ed51a3a424855"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=aa6c8345710dfe0a"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "117"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772600640"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "154"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=Ii.A4.Xk3jfKIMtDs2B_V1pEWDbmGLcLgHGO7KRIOzY-1772600617-1.0.1.1-sD4QBPj5E8o.oURn65NCEhHbN9J2iwzZXiwlSBsarwV6HLAEYYSE6G7ldyVpw_o4aX71ktOODheLcmkmhPDaVRLVZ9Nogt5apIi6thiZROw; path=/; expires=Wed, 04-Mar-26 05:33:37 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e55e1ea30a777-EZE"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n  \"accountId\": \"ACC-001\",\n  \"available\": 500.00,\n  \"ledger\": 500.00,\n  \"currency\": \"USD\"\n}"
+            },
+            {
+              "name": "INSUFFICIENT_FUNDS",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/{{accountId}}/balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "{{accountId}}",
+                    "balance"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:03:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=8f5ed51a3a424855"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=aa6c8345710dfe0a"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "117"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772600640"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "154"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=Ii.A4.Xk3jfKIMtDs2B_V1pEWDbmGLcLgHGO7KRIOzY-1772600617-1.0.1.1-sD4QBPj5E8o.oURn65NCEhHbN9J2iwzZXiwlSBsarwV6HLAEYYSE6G7ldyVpw_o4aX71ktOODheLcmkmhPDaVRLVZ9Nogt5apIi6thiZROw; path=/; expires=Wed, 04-Mar-26 05:33:37 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e55e1ea30a777-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errorCode\": \"INSUFFICIENT_FUNDS\",\n  \"message\": \"Insufficient available balance\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transfers",
+      "item": [
+        {
+          "name": "Create transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "PENDING",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "SUCCESS",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "DAILY_LIMIT_EXCEEDED",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromAccountId\": \"{{accountId}}\",\n  \"toAlias\": \"{{alias}}\",\n  \"amount\": 250.00,\n  \"currency\": \"USD\",\n  \"idempotencyKey\": \"IDEMP-001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transfers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfers"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PENDING",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromAccountId\": \"{{accountId}}\",\n  \"toAlias\": \"{{alias}}\",\n  \"amount\": 250.00,\n  \"currency\": \"USD\",\n  \"idempotencyKey\": \"IDEMP-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:10:08 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=f816a54a9aacbd42"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8f527b477b38b1f4"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601068"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "131"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=YnGlX3a9TJa7W3G7djFP2SG_72mV27oy7xqU8SGR1II-1772601008-1.0.1.1-qZeptXBiCtuLXz_8Z0MQtSzN5IfvHVT3MetGxIEYMx7w4na3gTHMBglWfRxTR8PCn1KJeyTY8dZx8qWREKu3ZN3rRVp1Cz9Bt4l4hP3z4AM; path=/; expires=Wed, 04-Mar-26 05:40:08 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e5f6fda97c803-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transferId\": \"TRF-10001\",\n  \"state\": \"PENDING\",\n  \"createdAt\": \"2026-03-04T12:00:00Z\"\n}"
+            },
+            {
+              "name": "SUCCESS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "PENDING",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromAccountId\": \"{{accountId}}\",\n  \"toAlias\": \"{{alias}}\",\n  \"amount\": 250.00,\n  \"currency\": \"USD\",\n  \"idempotencyKey\": \"IDEMP-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:10:08 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=f816a54a9aacbd42"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8f527b477b38b1f4"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601068"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "131"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=YnGlX3a9TJa7W3G7djFP2SG_72mV27oy7xqU8SGR1II-1772601008-1.0.1.1-qZeptXBiCtuLXz_8Z0MQtSzN5IfvHVT3MetGxIEYMx7w4na3gTHMBglWfRxTR8PCn1KJeyTY8dZx8qWREKu3ZN3rRVp1Cz9Bt4l4hP3z4AM; path=/; expires=Wed, 04-Mar-26 05:40:08 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e5f6fda97c803-EZE"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n  \"transferId\": \"TRF-10002\",\n  \"state\": \"SUCCESS\",\n  \"createdAt\": \"2026-03-04T12:00:00Z\",\n  \"completedAt\": \"2026-03-04T12:00:03Z\"\n}"
+            },
+            {
+              "name": "DAILY_LIMIT_EXCEEDED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "PENDING",
+                    "type": "text"
+                  },
+                  {
+                    "key": "",
+                    "value": "SUCCESS",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromAccountId\": \"{{accountId}}\",\n  \"toAlias\": \"{{alias}}\",\n  \"amount\": 250.00,\n  \"currency\": \"USD\",\n  \"idempotencyKey\": \"IDEMP-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:10:08 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=f816a54a9aacbd42"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8f527b477b38b1f4"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601068"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "131"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=YnGlX3a9TJa7W3G7djFP2SG_72mV27oy7xqU8SGR1II-1772601008-1.0.1.1-qZeptXBiCtuLXz_8Z0MQtSzN5IfvHVT3MetGxIEYMx7w4na3gTHMBglWfRxTR8PCn1KJeyTY8dZx8qWREKu3ZN3rRVp1Cz9Bt4l4hP3z4AM; path=/; expires=Wed, 04-Mar-26 05:40:08 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e5f6fda97c803-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errorCode\": \"DAILY_LIMIT_EXCEEDED\",\n  \"message\": \"Daily limit exceeded\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Transfer status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "PROCESSING",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "SUCCESS",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "REJECTED",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transfers/{{transferId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfers",
+                "{{transferId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PROCESSING",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/{{transferId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "{{transferId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:15:14 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=fb85a8a773f00f32"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8929f90b36944b0e"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601374"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "158"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=QuryYzhYZVBB.nwkoQ_v1QK5SG5oJ1nFnRSLkSxsJ94-1772601314-1.0.1.1-Df_ShlGdz0rwyKtLWg4TU6pEuYM25U4SLKntvk2WRd0S3Urxkp3aQ_I9gs_VsYtwVy5BAXUXuz91Xa7WcShRgiWPuMbqH6S0_3ySDPhMdjw; path=/; expires=Wed, 04-Mar-26 05:45:14 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e66e7395cf635-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transferId\": \"TRF-10001\",\n  \"state\": \"PROCESSING\",\n  \"updatedAt\": \"2026-03-04T12:00:10Z\"\n}"
+            },
+            {
+              "name": "SUCCESS",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "PROCESSING",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/{{transferId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "{{transferId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:15:14 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=fb85a8a773f00f32"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8929f90b36944b0e"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601374"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "158"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=QuryYzhYZVBB.nwkoQ_v1QK5SG5oJ1nFnRSLkSxsJ94-1772601314-1.0.1.1-Df_ShlGdz0rwyKtLWg4TU6pEuYM25U4SLKntvk2WRd0S3Urxkp3aQ_I9gs_VsYtwVy5BAXUXuz91Xa7WcShRgiWPuMbqH6S0_3ySDPhMdjw; path=/; expires=Wed, 04-Mar-26 05:45:14 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e66e7395cf635-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transferId\": \"TRF-10001\",\n  \"state\": \"SUCCESS\",\n  \"updatedAt\": \"2026-03-04T12:00:20Z\"\n}"
+            },
+            {
+              "name": "REJECTED",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "PROCESSING",
+                    "type": "text"
+                  },
+                  {
+                    "key": "",
+                    "value": "SUCCESS",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/{{transferId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "{{transferId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:15:14 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=fb85a8a773f00f32"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=8929f90b36944b0e"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601374"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "158"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=QuryYzhYZVBB.nwkoQ_v1QK5SG5oJ1nFnRSLkSxsJ94-1772601314-1.0.1.1-Df_ShlGdz0rwyKtLWg4TU6pEuYM25U4SLKntvk2WRd0S3Urxkp3aQ_I9gs_VsYtwVy5BAXUXuz91Xa7WcShRgiWPuMbqH6S0_3ySDPhMdjw; path=/; expires=Wed, 04-Mar-26 05:45:14 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e66e7395cf635-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transferId\": \"TRF-10001\",\n  \"state\": \"REJECTED\",\n  \"reasonCode\": \"INSUFFICIENT_FUNDS\",\n  \"updatedAt\": \"2026-03-04T12:00:12Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cancel transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "CANCELLED",
+                "type": "text"
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "CANNOT_CANCEL_IN_PROCESSING",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transfers/{{transferId}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfers",
+                "{{transferId}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "CANCELLED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/{{transferId}}/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "{{transferId}}",
+                    "cancel"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:18:36 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=a42022f2af6a1d63"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=2db2566b3d468a84"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "116"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601529"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "167"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=GKKStHLZpz8cPsToKdtCefOzSLP6soWl20ElqlViHK0-1772601516-1.0.1.1-lAqjzTWFaTMA7y_odfZTdYAGsoSjaakKvSHhtlfHbMY2Yglck81tct4hjLuHP2_FCkZBH63lT_6hMJFZWg9ZYA02HdnIzdKsE2PNBFDrdwo; path=/; expires=Wed, 04-Mar-26 05:48:36 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e6bd469ac1522-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transferId\": \"TRF-10001\",\n  \"state\": \"CANCELLED\",\n  \"cancelledAt\": \"2026-03-04T12:00:05Z\"\n}"
+            },
+            {
+              "name": "CANNOT_CANCEL_IN_PROCESSING",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "CANCELLED",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/{{transferId}}/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "{{transferId}}",
+                    "cancel"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": 404
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 04 Mar 2026 05:18:36 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=a42022f2af6a1d63"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=2db2566b3d468a84"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "116"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1772601529"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "167"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=GKKStHLZpz8cPsToKdtCefOzSLP6soWl20ElqlViHK0-1772601516-1.0.1.1-lAqjzTWFaTMA7y_odfZTdYAGsoSjaakKvSHhtlfHbMY2Yglck81tct4hjLuHP2_FCkZBH63lT_6hMJFZWg9ZYA02HdnIzdKsE2PNBFDrdwo; path=/; expires=Wed, 04-Mar-26 05:48:36 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "cf-ray",
+                  "value": "9d6e6bd469ac1522-EZE"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errorCode\": \"CANNOT_CANCEL_IN_PROCESSING\",\n  \"message\": \"Transfer cannot be cancelled in PROCESSING state\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "accountId",
+      "value": ""
+    },
+    {
+      "key": "alias",
+      "value": ""
+    },
+    {
+      "key": "transferId",
+      "value": ""
+    }
+  ]
+}
